@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import person from "./Person/Person";
+
+
 
 class App extends Component {
   state = {
@@ -45,14 +46,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -73,21 +66,24 @@ class App extends Component {
       );
     }
 
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red"); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push("bold"); // classes = ['red', 'bold']
+    }
+
     return (
       <div className="App">
         <h1>Hi, I am a React App</h1>
-        <p>This is Really Working</p>
-        <button style={style} onClick={this.togglePerson}>
+        <p className={classes.join(" ")}>This is Really Working</p>
+        <button className="button" onClick={this.togglePerson}>
           Toggle Persons
         </button>
         {persons}
       </div>
     );
-    // return React.createElement(
-    //   "div",
-    //  null,
-    //   React.createElement("h1", null, "Does this work now??")
-    //);
   }
 }
 
